@@ -1,0 +1,50 @@
+* {
+    padding: 0; margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.4rem;
+}
+.name-of-game h1{
+    font-family: Helvetica, sans-serif;
+}
+
+#letters {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 7em 0;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+#letters .key {
+    width: 2em; height: 2em;
+    color: darkgreen;
+    border: 1px gray solid;
+    text-align: center;
+    display: grid;
+    place-content: center;
+    margin: 5px;
+    cursor: pointer;
+}
+
+#letters .key:hover {
+    background-color: palegreen;
+}
+
+.dashed p {
+    font-size: 3em;
+    letter-spacing: 0.5em;
+    margin-bottom: 2em;
+    color: black;
+}
+
+.result {
+    font-size: 1rem;
+    display: none;
+}
