@@ -1,5 +1,6 @@
 "use strict";
 
+// questions
 const questions = [
     {explanations: "Greed and class discrimination threaten the newly formed symbiotic relationship between the wealthy Park family and the destitute Kim clan.",
         moiveOrSeries : "Parasite"},
@@ -38,28 +39,45 @@ const questions = [
 
 const keys =  document.querySelectorAll("div");
 const dashed = document.querySelector(".dashed").querySelector("p");
-const img = document.getElementsByClassName("")
+const img = document.getElementsByClassName("image")[0].querySelector("img");
+
 keys.forEach(items => {
     items.addEventListener('click', buttonHandler)
 })
 
+
+
+// a function in order to chose a question random.
 let randomItem;
 let randomIndex;
+let randomExplanation;
 function choseRandomItem() {
     randomIndex = (Math.random() * (questions.length - 1) ).toFixed();
     randomItem = questions[randomIndex].moiveOrSeries;
+    randomExplanation = questions[randomIndex].explanations;
+    
 }
 
 choseRandomItem();
+
+// this  function will be executed when user click on letters
+let i = 1;
 function buttonHandler(event) { 
     event.target.classList = "used";
     if(randomItem.toLowerCase().includes(event.target.innerText) || randomItem.toUpperCase().includes(event.target.innerText)) {
         console.log("hello")
     } else { 
-
+        img.src = `./assets/hangman${i++}.png `
+        if( i === 6)
+        {
+            setTimeout(() => {
+                reload();
+            }, 4000);
+        }
     }
 }
 
+// a function to reload page 
 function reload() {
     location.reload();
 }

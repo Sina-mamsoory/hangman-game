@@ -80,3 +80,10 @@ body {
     position: relative;
     top: -50px;
 }
+
+#show-question {
+    width: 380px; height: 210px;
+    border: 1px black solid;
+    position: absolute;
+    left: 140px;
+}
