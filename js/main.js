@@ -55,7 +55,7 @@ function choseRandomItem() {
     randomIndex = (Math.random() * (questions.length - 1) ).toFixed();
     randomItem = questions[randomIndex].moiveOrSeries;
     randomExplanation = questions[randomIndex].explanations;
-    
+    document.getElementById("question").innerText = randomExplanation;
 }
 
 choseRandomItem();
