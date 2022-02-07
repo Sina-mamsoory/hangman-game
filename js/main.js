@@ -1,7 +1,7 @@
 "use strict";
 
 // questions
-const questions = [
+const question = [
     {explanations: "Greed and class discrimination threaten the newly formed symbiotic relationship between the wealthy Park family and the destitute Kim clan.",
         moiveOrSeries : "Parasite"},
     {explanations: "In Nazi-occupied France during World War II, a plan to assassinate Nazi leaders by a group of Jewish U.S. soldiers coincides with a theatre owner's vengeful plans for the same.",
@@ -36,10 +36,15 @@ const questions = [
         moiveOrSeries : "The Handmaid's Tale"},
 ] ;
 
+let questions = question.map( items => {
+      items.moiveOrSeries = items.moiveOrSeries.toLowerCase();
+      return items
+});
 
 const keys =  document.querySelectorAll("div");
 const dashed = document.querySelector(".dashed").querySelector("p");
 const img = document.getElementsByClassName("image")[0].querySelector("img");
+let clicked = [];
 
 keys.forEach(items => {
     items.addEventListener('click', buttonHandler)
@@ -60,12 +65,32 @@ function choseRandomItem() {
 
 choseRandomItem();
 
+// the function setDashed to set dashed and letters
+function setDashed() {
+    let splitedWord = randomItem.split("")
+    console.log(splitedWord)
+    let mapWord = splitedWord.map(letters => {if(letters != " ") {
+        if(clicked.indexOf(letters) >= 0) {
+            return letters;
+        } else {
+            return "_";
+        }
+    } else {
+        return " "
+    }})
+    let joinWord = mapWord.join("");
+    document.getElementsByClassName("dashed")[0].getElementsByTagName("p")[0].innerHTML = joinWord
+}
+
 // this  function will be executed when user click on letters
 let i = 1;
 function buttonHandler(event) { 
-    event.target.classList = "used";
-    if(randomItem.toLowerCase().includes(event.target.innerText) || randomItem.toUpperCase().includes(event.target.innerText)) {
-        console.log("hello")
+    
+    event.target.innerText =  event.target.innerText.toLowerCase();
+    clicked.indexOf(event.target.innerText) === -1 ? clicked.push(event.target.innerText) : null;
+    console.log(`${clicked} + 1`)
+    if(randomItem.includes(event.target.innerText)) {
+        setDashed();
     } else { 
         img.src = `./assets/hangman${i++}.png `
         if( i === 6)
@@ -75,6 +100,9 @@ function buttonHandler(event) {
             }, 4000);
         }
     }
+    console.log(event.target.innerText)
+    event.target.innerText =  event.target.innerText.toUpperCase()
+    event.target.classList = "used";
 }
 
 // a function to reload page 
@@ -82,4 +110,7 @@ function reload() {
     location.reload();
 }
 
-console.log(randomItem)
+console.log(randomItem);
+
+choseRandomItem();
+setDashed();

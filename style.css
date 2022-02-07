@@ -9,6 +9,7 @@ body {
     justify-content: center;
     align-items: center;
     font-size: 1.4rem;
+    background-color: #eeecec;
 }
 .name-of-game h1{
     font-family: Helvetica, sans-serif;
