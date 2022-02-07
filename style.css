@@ -19,8 +19,10 @@ body {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    margin: 7em 0;
+    margin: 7em 0 0 0;
     font-family: 'Short Stack', cursive;
+    position: relative;
+    top: -80px;
 }
 
 #letters div {
@@ -39,17 +41,21 @@ body {
 }
 
 .dashed p {
-    font-size: 3em;
+    font-size: 2em;
     letter-spacing: 0.5em;
-    position: relative;
-    top: -70px;
     color: black;
     margin-bottom: 2em;
+    position: relative;
+    top: 10px;
+    display: inline;
+    margin: 0  1rem 0 0 ;
 }
 
 .result {
-    font-size: 1rem;
+    font-size: 2rem;
     display: none;
+    position: relative;
+    top: 20px;
 }
 
 #letters div.used { 
@@ -70,7 +76,7 @@ body {
     border: #ecf0f3;
     cursor: pointer;
     position: relative;
-    top: -90px;
+    top: -40px;
 }
 
 #play-again button:hover {
@@ -79,14 +85,14 @@ body {
 
 .image img { 
     position: relative;
-    top: -50px;
+    top: 0px;
 }
 
 #show-question {
     width: 390px; height: 230px;
     border: 1px black solid;
     position: absolute;
-    left: 120px; top: 350px;
+    left: 120px; top: 270px;
     padding: 15px;
     background-color: #dde1fa;
     border-radius: 15px;

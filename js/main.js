@@ -9,7 +9,7 @@ const question = [
     {explanations: "When their relationship turns sour, a couple undergoes a medical procedure to have each other erased from their memories.",
         moiveOrSeries : "Eternal Sunshine of the Spotless Mind"} , 
     {explanations: "A newly fostered young boy in search of his mother instead finds unexpected super powers and soon gains a powerful enemy.",
-        moiveOrSeries : "Shazam!"}, 
+        moiveOrSeries : "Shazam"}, 
     {explanations: "A failed reporter is bonded to an alien entity, one of many symbiotes who have invaded Earth. But the being takes a liking to Earth and decides to protect it.",
         moiveOrSeries : "Venom"},  
     {explanations: "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.",
@@ -36,7 +36,7 @@ const question = [
         moiveOrSeries : "The Handmaid's Tale"},
 ] ;
 
-let questions = question.map( items => {
+const questions = question.map( items => {
       items.moiveOrSeries = items.moiveOrSeries.toLowerCase();
       return items
 });
@@ -61,14 +61,15 @@ function choseRandomItem() {
     randomItem = questions[randomIndex].moiveOrSeries;
     randomExplanation = questions[randomIndex].explanations;
     document.getElementById("question").innerText = randomExplanation;
+    window.addEventListener("keydown" ,keyHandler);
 }
 
 choseRandomItem();
 
 // the function setDashed to set dashed and letters
+let joinWord
 function setDashed() {
     let splitedWord = randomItem.split("")
-    console.log(splitedWord)
     let mapWord = splitedWord.map(letters => {if(letters != " ") {
         if(clicked.indexOf(letters) >= 0) {
             return letters;
@@ -78,29 +79,63 @@ function setDashed() {
     } else {
         return " "
     }})
-    let joinWord = mapWord.join("");
-    document.getElementsByClassName("dashed")[0].getElementsByTagName("p")[0].innerHTML = joinWord
+    joinWord = mapWord.join("");
+    document.getElementsByClassName("dashed")[0].getElementsByTagName("p")[0].innerHTML = joinWord;
+}
+
+
+
+
+// this  function will be executed when user win; 
+
+function checkIfWin(){
+    if(randomItem === joinWord) {
+        img.src = `assets/winner.png`
+        setTimeout(() => {
+            reload();
+        }, 3000);
+    }
+}
+
+//  this  function will be executed when user lose;
+let mistake = 0;
+function checkIfLose() {
+    img.src = `./assets/hangman${++mistake}.png `
+        if( mistake === 6)
+        {
+            document.getElementsByClassName("dashed")[0].innerHTML = `the correct answer:<p> ${randomItem}</p>`
+            document.getElementsByClassName("result")[0].style.display = "block"
+        }
+}
+
+
+
+//  this  function will be executed when user use keybord
+function keyHandler(event) { 
+    clicked.indexOf(event.key) === -1 ? clicked.push(event.key) : null;
+    if(randomItem.indexOf(event.key) >= 0) {
+        setDashed();
+        checkIfWin();
+    } else if(event.keyCode === 39) { 
+        reload();
+    } else { 
+        checkIfLose();
+    }
+
 }
 
 // this  function will be executed when user click on letters
-let i = 1;
+
 function buttonHandler(event) { 
     
     event.target.innerText =  event.target.innerText.toLowerCase();
     clicked.indexOf(event.target.innerText) === -1 ? clicked.push(event.target.innerText) : null;
-    console.log(`${clicked} + 1`)
     if(randomItem.includes(event.target.innerText)) {
         setDashed();
+        checkIfWin();
     } else { 
-        img.src = `./assets/hangman${i++}.png `
-        if( i === 6)
-        {
-            setTimeout(() => {
-                reload();
-            }, 4000);
-        }
+        checkIfLose();
     }
-    console.log(event.target.innerText)
     event.target.innerText =  event.target.innerText.toUpperCase()
     event.target.classList = "used";
 }
@@ -109,8 +144,6 @@ function buttonHandler(event) {
 function reload() {
     location.reload();
 }
-
-console.log(randomItem);
 
 choseRandomItem();
 setDashed();
