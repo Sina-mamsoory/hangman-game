@@ -41,7 +41,7 @@ body {
 }
 
 .dashed p {
-    font-size: 2em;
+    font-size: em;
     letter-spacing: 0.5em;
     color: black;
     margin-bottom: 2em;
@@ -119,4 +119,29 @@ body {
     font-size: 22px;
     color: #5e08c0;
 }
+
+.fa-github { 
+    position: absolute;
+    bottom: 105px; left: 40px;
+    font-size: 2.5rem;
+    cursor: pointer;
+    color: rgb(39, 39, 39);
+}
+
+.fa-github:hover {
+    color: rgb(9, 9, 9);
+}
+
+.fa-gitlab{
+    position: absolute;
+    bottom: 50px; left: 40px;
+    font-size: 2.5rem;
+    color: rgb(255, 149, 36);
+
+}
+
+.fa-gitlab:hover {
+    color: rgb(250, 130, 3);
+}
+
 
