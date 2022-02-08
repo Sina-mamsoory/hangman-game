@@ -40,15 +40,20 @@ body {
     background-color: palegreen;
 }
 
+.dashed {
+    width: auto; height: 100px;
+    margin: 0 6rem;
+}
+
 .dashed p {
-    font-size: em;
+    font-size: 2em;
     letter-spacing: 0.5em;
     color: black;
     margin-bottom: 2em;
     position: relative;
     top: 10px;
     display: inline;
-    margin: 0  1rem 0 0 ;
+    margin: 0  1rem 0 1rem ;
 }
 
 .result {
